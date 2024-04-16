@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">exercice_android</string>
     <string name="submit">SUBMIT</string>
+    <string name="job">Job</string>
+    <string name="company">Company</string>
+    <string name="name">Name</string>
 </resources>

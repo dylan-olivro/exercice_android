@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name" />
+        android:text="@string/name" />
 
     <TextView
         android:id="@+id/name"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Job" />
+        android:text="@string/job" />
 
     <TextView
         android:id="@+id/job"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Company" />
+        android:text="@string/company" />
 
     <TextView
         android:id="@+id/company"
