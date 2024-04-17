@@ -1,6 +1,7 @@
 package com.example.exercice_android
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -13,23 +14,20 @@ class SecondActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_second)
 
-        val extras: Bundle? = intent.extras
-        val name = extras?.getString("name")
-        val job = extras?.getString("job")
-        val company = extras?.getString("company")
+        val user: User? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("user", User::class.java)
+        } else {
+            intent.getParcelableExtra("user")
+        }
 
-        findViewById<TextView>(R.id.name)?.text = name
-        findViewById<TextView>(R.id.job)?.text = job
-        findViewById<TextView>(R.id.company)?.text = company
+        findViewById<TextView>(R.id.name)?.text = user?.name
+        findViewById<TextView>(R.id.job)?.text = user?.job
+        findViewById<TextView>(R.id.company)?.text = user?.company
 
         val btnSubmit = findViewById<Button>(R.id.button)
         btnSubmit.setOnClickListener {
             val intent = Intent(this, ThirdActivity::class.java)
-            intent.action = Intent.ACTION_VIEW
-            intent.addCategory("user")
-            intent.putExtra("name", name)
-            intent.putExtra("job", job)
-            intent.putExtra("company", company)
+            intent.putExtra("user", user)
             startActivity(intent)
         }
     }

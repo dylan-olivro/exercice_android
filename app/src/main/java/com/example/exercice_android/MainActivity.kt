@@ -23,12 +23,9 @@ class MainActivity : AppCompatActivity() {
             if (fullName.isEmpty() || fullJob.isEmpty() || fullCompany.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             } else {
+                val user = User(fullName, fullJob, fullCompany)
                 val intent = Intent(this, SecondActivity::class.java)
-                intent.action = Intent.ACTION_VIEW
-                intent.addCategory("user")
-                intent.putExtra("name", fullName)
-                intent.putExtra("job", fullJob)
-                intent.putExtra("company", fullCompany)
+                intent.putExtra("user", user)
                 startActivity(intent)
             }
         }

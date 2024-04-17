@@ -1,6 +1,8 @@
 package com.example.exercice_android
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +13,17 @@ class ThirdActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_third)
 
-        val extras: Bundle? = intent.extras
-        val name = extras?.getString("name")
-        val job = extras?.getString("job")
-        val company = extras?.getString("company")
+        val user: User? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Log.i("Problemes","Je sus dans le tiramisu")
+            intent.getParcelableExtra("user", User::class.java)
+        } else {
+            Log.i("Problemes","Je suis depreciate")
+            intent.getParcelableExtra("user")
+        }
 
-        findViewById<TextView>(R.id.name)?.text = name
-        findViewById<TextView>(R.id.job)?.text = job
-        findViewById<TextView>(R.id.company)?.text = company
+        findViewById<TextView>(R.id.name)?.text = user?.name
+        findViewById<TextView>(R.id.job)?.text = user?.job
+        findViewById<TextView>(R.id.company)?.text = user?.company
+
     }
 }
